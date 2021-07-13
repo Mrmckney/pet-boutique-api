@@ -92,7 +92,10 @@ exports.updateCustomer = (req, res) => {
     const db = connectDb()
     const { name } = req.params
     db.collection('customers').doc(name).update(
-        {...req.body, timestamp: admin.firestore.FieldValue.serverTimestamp()
+        {...req.body,
+             timestamp: admin.firestore.FieldValue.serverTimestamp(),
+             "favorites.color": "pink",
+             
         
     })
         .then(() => res.status(202).send('Document successfully updated'))
